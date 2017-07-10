@@ -9,5 +9,52 @@
 
 <a href = "dot.html">enter the anus</a>
 </center>
+  <script>
+    var request = require('request');
+var root = 'https://images-api.nasa.gov/search?';
+var parameters = [
+    'q',
+    'center',
+    'description',
+    'keywords',
+    'location',
+    'media_type',
+    'nasa_id',
+    'photographer',
+    'secondary_creator',
+    'title',
+    'year_start',
+    'year_end'
+]
+        var param = []
+        var erro;
+        // making valid link
+        for (var parameter in query) {
+            if (parameters.indexOf(parameter) > -1) {
+                param.push(parameter + '=' + encodeURIComponent(query[parameter]))
+            } else {
+                throw parameter + ' is not a valid parameter.';
+            }
+        }
+        request.get({
+            url: root + param.join('&'),
+            json: true,
+            headers: { 'User-Agent': 'request' }
+        }, (err, res, data) => {
+            if (err) {
+                erro = 'Error: ', err;
+            } else if (res.statusCode !== 200) {
+                erro = 'Bad status code: ', res.statusCode;
+            } else {
+                if (data.collection.items.length > 0) {
+                    console.log(data.collection.items, erro);
+                } else {
+                    erro = 'Error, Nothing was found'
+                    console.log(data.collection.items, erro);
+                }
+            }
+        });
+
+    </script>
 </body>
 </html>
