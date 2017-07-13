@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>nasa images</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script src="js/nasa.js"></script>
+</head>
+<body>
+    <center>
+        <form><input type="text" id="search" name="search"> </form>
+        <input type="button" value="New image" onclick="ref()" style="background: white no-repeat; width:px; height:px;">
+    </center>
+
+    <script>
+        function ref() {
+            var search = document.getElementsByName("search")[0].value;
+            nasaimage(search, function (link) {
+                var body = document.getElementsByTagName('body')[0];
+                body.style.backgroundImage = 'url(' + link + ')';
+            });
+        }
+        ref()
+    </script>
+</body>
+</html>
