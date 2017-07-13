@@ -14,7 +14,7 @@ function nasaimage(search, callback) {
         httpGetAsync('https://images-api.nasa.gov/search?media_type=image', function (link) {
             var data = JSON.parse(link)
             var number = Math.floor(Math.random() * data.collection.items.length);
-            callback(data.collection.items[number].links[0].href);
+            callback(data.collection.items[number].links[0].href, data.collection.items[number]);
         })
     } else {
         httpGetAsync('https://images-api.nasa.gov/search?q=' + search + '&media_type=image', function (link) {
@@ -23,7 +23,7 @@ function nasaimage(search, callback) {
             if (data.collection.items.length == 0) {
                 return;
             }
-            callback(data.collection.items[number].links[0].href);
+            callback(data.collection.items[number].links[0].href, data.collection.items[number]);
         })
     }
 }

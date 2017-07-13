@@ -2,19 +2,25 @@
 
 <head>
     <script src="js/nasa.js"></script>
-    <title>nasa images</title>
+    <title>some gay shit</title>
 </head>
 
 <body>
     <div class="box">
         <center>
-            <form><input type="text" value="Apollo 11" id="search" name="search"> </form>
-            <input type="button" value="New image" onclick="ref()" style="background: white no-repeat; width:px; height:px;">
+            <div style="margin-bottom: 10px; color: white; font-family: futura;"><font size='2'>nasa image search thing - leave blank to get random image</font></div>
+            <form><input type="text" style="background: black; color: white; font-family: futura;" id="search"
+                    name="search"> </form>
+            <input type="button" value="New image" onclick="ref()" style="background: black; color: white; font-family: futura; width:px; height:px;">
         </center>
     </div>
     <style>
         body {
             background-color: black;
+            background-image: url('images/starsbg.jpg');
+            background-size: cover;
+            opacity: 1;
+            background-repeat: no-repeat;
         }
 
         html {
@@ -22,24 +28,73 @@
             margin: 0;
         }
 
+        .blur {
+            opacity: 1;
+            background-image: url();
+            height: 98%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-filter: blur(50px);
+            -moz-filter: blur(50px);
+            -o-filter: blur(50px);
+            -ms-filter: blur(50px);
+            filter: blur(50px);
+        }
+
         .bg {
             background-image: url();
+            top: -650px;
+            position: relative;
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            border-style: ridge;
         }
+
+        .link {
+            font-family: futura;
+            color: white;
+        }
+
+        .info {
+            font-family: futura;
+            color: white;
+            position: relative;
+            top: -600px;
+        }
+
+
         .box {
             margin-bottom: 10px;
         }
+
+        a {
+            color: lightblue;
+        }
     </style>
-    <div class="bg"></div>
+    <div>
+        <div class="blur" ;></div>
+        <div class="bg" ;></div>
+        <center>
+            <div class="info" id="data" ;></div>
+            <a href="https://images.nasa.gov/#/">
+                <div class="link" ;>From this website</div>
+            </a>
+        </center>
+    </div>
 
     <script>
         function ref() {
             var search = document.getElementsByName("search")[0].value;
-            nasaimage(search, function (link) {
+            nasaimage(search, function (link, data) {
+                console.log(data.data[0].title)
+                document.getElementById("data").innerHTML = "<font size='6'>" + data.data[0].title +
+                    "</font><br><br><br>" + data.data[0].description + "<br><br><br><br><a href='" + link +
+                    "' target='_blank'>" + link + "</a>";
                 document.getElementsByClassName('bg')[0].style.backgroundImage = 'url("' + link + '")';
+                document.getElementsByClassName('blur')[0].style.backgroundImage = 'url("' + link + '")';
             });
         }
         ref()
