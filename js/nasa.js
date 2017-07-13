@@ -10,7 +10,7 @@ function nasaimage(search, callback) {
         xmlHttp.open("GET", theUrl, true);
         xmlHttp.send(null);
     }
-    if (typeof search == 'function') {
+    if (search == undefined || search == '' || search == ' ') {
         console.log('super fuck u')
         httpGetAsync('https://images-api.nasa.gov/search?media_type=image', function (link) {
             var data = JSON.parse(link)
