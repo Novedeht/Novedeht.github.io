@@ -11,6 +11,7 @@ function nasaimage(search, callback) {
         xmlHttp.send(null);
     }
     if (typeof search == 'function') {
+        console.log('super fuck u')
         httpGetAsync('https://images-api.nasa.gov/search?media_type=image', function (link) {
             var data = JSON.parse(link)
             var number = Math.floor(Math.random() * data.collection.items.length);
