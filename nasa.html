@@ -1,24 +1,49 @@
 <html>
+
 <head>
-    <title>nasa images</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
     <script src="js/nasa.js"></script>
+    <title>nasa images</title>
 </head>
+
 <body>
-    <center>
-        <form><input type="text" id="search" name="search"> </form>
-        <input type="button" value="New image AAAAAA" onclick="ref()" style="background: white no-repeat; width:px; height:px;">
-    </center>
+    <div class="box">
+        <center>
+            <form><input type="text" value="Apollo 11" id="search" name="search"> </form>
+            <input type="button" value="New image" onclick="ref()" style="background: white no-repeat; width:px; height:px;">
+        </center>
+    </div>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .bg {
+            background-image: url();
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .box {
+            margin-bottom: 10px;
+        }
+    </style>
+    <div class="bg"></div>
 
     <script>
         function ref() {
             var search = document.getElementsByName("search")[0].value;
             nasaimage(search, function (link) {
-                var body = document.getElementsByTagName('body')[0];
-                body.style.backgroundImage = 'url(' + link + ')';
+                document.getElementsByClassName('bg')[0].style.backgroundImage = 'url("' + link + '")';
             });
         }
         ref()
     </script>
 </body>
+
 </html>

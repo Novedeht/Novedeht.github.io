@@ -11,7 +11,6 @@ function nasaimage(search, callback) {
         xmlHttp.send(null);
     }
     if (search == undefined || search == '' || search == ' ') {
-        console.log('super fuck u')
         httpGetAsync('https://images-api.nasa.gov/search?media_type=image', function (link) {
             var data = JSON.parse(link)
             var number = Math.floor(Math.random() * data.collection.items.length);
@@ -21,7 +20,6 @@ function nasaimage(search, callback) {
         httpGetAsync('https://images-api.nasa.gov/search?q=' + search + '&media_type=image', function (link) {
             var data = JSON.parse(link)
             var number = Math.floor(Math.random() * data.collection.items.length);
-            console.log('fuck u')
             if (data.collection.items.length == 0) {
                 return;
             }
