@@ -1,0 +1,5 @@
+body {    
+    background: url(atmos.png) no-repeat top center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
