@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <title>some gay shit</title>
+    <style>
+        body {
+            background: grey;
+        }
+
+        @keyframes move {
+            0% {
+                top: 0px;
+            }
+            10% {
+                top: -7px;
+            }
+            20% {
+                top: -10px;
+            }
+            30% {
+                top: -7px;
+            }
+            50% {
+                top: -0px;
+            }
+            75% {
+                top: -2px;
+            }
+            100% {
+                top: -0px;
+            }
+        }
+
+        .output {
+            width: 50%;
+            height: 10%;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .outputtext {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .new {
+            width: 130px;
+            height: 4%;
+            word-wrap: break-word;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            cursor: hand;
+            margin-top: 100px;
+        }
+
+        .bounce {
+            -webkit-animation: move 0.3s linear both;
+        }
+
+        .newtext {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .input {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            width: 130px;
+            height: 20px;
+            top: 22px;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script>
+        function bounce() {
+            if ($('.input').html().indexOf('<br>') > -1) return;
+            if ($('.input').html().length > 30) {
+                document.getElementById('outputtext').innerHTML = 'Too many characters';
+                $('.output').addClass('bounce');
+                setTimeout(function () {
+                    $('.output').removeClass('bounce');;
+                }, 300);
+                return;
+            }
+            if ($('.input').html() == '') {
+                document.getElementById('outputtext').innerHTML = nickname();
+            }
+            if ($('.input').html() != '') {
+                document.getElementById('outputtext').innerHTML = nickname($('.input').html());
+            }
+            $('.output').addClass('bounce');
+            setTimeout(function () {
+                $('.output').removeClass('bounce');;
+            }, 300);
+        };
+    </script>
+    <script src="js/nickname.js"></script>
+</head>
+
+<body>
+    <center>
+        <div class="new" id="new" onclick="bounce();" style="background: lightyellow">
+            <div unselectable="on" class="newtext">
+                New nickname
+            </div>
+        </div>
+        <div class="output" style="background: lightyellow">
+            <div class="outputtext" id="outputtext">
+                Rad frog sex
+            </div>
+        </div>
+        <div class="input" id="input" contenteditable="true" spellcheck="false" id='header'></div>
+        <script>
+            bounce();
+        </script>
+    </center>
+</body>
+
+</html>
