@@ -73,21 +73,22 @@
         }
 
         .input {
+
+            color: black;
+            text-align: center;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 16px;
             width: 130px;
-            height: 20px;
             top: 22px;
             box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
             position: relative;
-            white-space: nowrap;
-            overflow: hidden;
         }
     </style>
     <script src="../jquery-3.2.1.min.js"></script>
+    <script src="js/nickname.js"></script>
     <script>
         function bounce() {
-            if ($('.input').html().indexOf('<br>') > -1) return;
+            if ($('.input').html().indexOf('br>') > -1 || $('.input').html().indexOf('div>') > -1) return;
             if ($('.input').html().length > 30) {
                 document.getElementById('outputtext').innerHTML = 'Too many characters';
                 $('.output').addClass('bounce');
@@ -107,8 +108,15 @@
                 $('.output').removeClass('bounce');;
             }, 300);
         };
+
+        function enterpressalert(e, textarea) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                event.preventDefault();
+                bounce();
+            }
+        }
     </script>
-    <script src="js/nickname.js"></script>
 </head>
 
 <body>
@@ -123,9 +131,12 @@
                 Rad frog sex
             </div>
         </div>
-        <div class="input" id="input" contenteditable="true" spellcheck="false" id='header'></div>
+        <div class="input" id="input" onKeyPress="enterpressalert(event, this)" contenteditable="true" spellcheck="false" id='header'></div>
         <script>
             bounce();
+            document.querySelector(".input").addEventListener("paste", function (e) {
+                e.preventDefault();
+            });
         </script>
     </center>
 </body>
