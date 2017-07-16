@@ -85,8 +85,26 @@
         }
     </style>
     <script src="../jquery-3.2.1.min.js"></script>
-    <script src="js/nickname.js"></script>
+    <script src="js/words.js"></script>
     <script>
+        var adjectiveChoice = adjective;
+        var nounChoice = noun;
+        var verbChoice = verb;
+
+        function nickname(args) {
+            if (args == undefined || args == '' || args == ' ') {
+                var adjective = adjectiveChoice[Math.floor(Math.random() * adjectiveChoice.length)];
+                var noun = nounChoice[Math.floor(Math.random() * nounChoice.length)];
+                var verb = verbChoice[Math.floor(Math.random() * verbChoice.length)];
+                return adjective + " " + noun + " " + verb;
+            } else {
+                var adjective = adjectiveChoice[Math.floor(Math.random() * adjectiveChoice.length)];
+                var noun = args;
+                var verb = verbChoice[Math.floor(Math.random() * verbChoice.length)];
+                return adjective + " " + noun + " " + verb;
+            }
+        }
+
         function bounce() {
             if ($('.input').html().indexOf('br>') > -1 || $('.input').html().indexOf('div>') > -1) return;
             if ($('.input').html().length > 30) {
