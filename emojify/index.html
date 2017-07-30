@@ -1,0 +1,176 @@
+<html>
+
+<head>
+    <title>my gay shit</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .input {
+            width: 1000px;
+            margin-top: 100px;
+            margin-bottom: 10px;
+            font-family: "Arial", Arial, serif;
+            font-size: 25px;
+            outline-width: 0;
+        }
+
+        .output1 {
+            margin-top: 25px;
+            font-family: "Arial", Arial, serif;
+            outline-width: 0;
+            background: #e0ecff;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .output2 {
+            margin-top: 25px;
+            font-family: "Arial", Arial, serif;
+            outline-width: 0;
+            background: #ffe0e0;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .c1 {
+            position: relative;
+            margin-top: 10px;
+            font-family: "Arial", Arial, serif;
+            color: #becee8;
+            opacity: 0;
+        }
+
+        .c2 {
+            position: relative;
+            margin-top: 10px;
+            font-family: "Arial", Arial, serif;
+            bottom: 28px;
+            color: #e5bebe;
+            opacity: 0;
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes move {
+            0% {
+                top: 0px;
+            }
+            10% {
+                top: -7px;
+            }
+            20% {
+                top: -10px;
+            }
+            30% {
+                top: -7px;
+            }
+            50% {
+                top: -0px;
+            }
+            75% {
+                top: -2px;
+            }
+            100% {
+                top: -0px;
+            }
+        }
+
+        .bounce {
+            -webkit-animation: move 0.3s linear both;
+        }
+
+        .fadeoutin {
+            -webkit-animation: fade 0.3s linear both;
+        }
+    </style>
+    <script src="js/func.js"></script>
+    <script src="js/emojis.js"></script>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../copy.js"></script>
+</head>
+
+<body>
+    <center>
+        <div class="input" id="input" onKeyPress="enterpressalert(event, this)" contenteditable="true" spellcheck="false">Type stuff here</div>
+        <hr>
+        <div class="output1" style="font-family: 'Arial', Arial, serif;" id="text"></div>
+        <div class="c1">Copied</div>
+        <pre>
+        <div class="output2" style="font-family: 'Arial', Arial, serif;" id="emoji">SUCC</div>
+            <div class="c2">Copied</div>
+        </pre>
+    </center>
+    <script>
+        function enterpressalert(e, textarea) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                $('.output1').addClass('bounce');
+                if (document.getElementById("input").innerHTML == '') {
+                    document.getElementById("text").innerHTML = emojify('Type something you', emoji);
+                } else {
+                    document.getElementById("text").innerHTML = emojify(document.getElementById("input").innerHTML,
+                        emoji);
+                }
+                setTimeout(function () {
+                    $('.output1').removeClass('bounce');;
+                }, 300);
+                setTimeout(function () {
+                    if (document.getElementById("input").innerHTML == '') {
+                        document.getElementById("emoji").innerHTML = jumbo('Stinky head dong boy');
+                    } else {
+                    document.getElementById("emoji").innerHTML = jumbo(document.getElementById("input").innerHTML);
+                    }
+                    $('.output2').addClass('bounce');
+                    setTimeout(function () {
+                        $('.output2').removeClass('bounce');;
+                    }, 300);
+                }, 30);
+                event.preventDefault();
+            }
+        }
+        document.querySelector(".input").addEventListener("paste", function (e) {
+            e.preventDefault();
+            var text = e.clipboardData.getData("text/plain");
+            document.execCommand("insertHTML", false, text);
+        });
+        document.getElementById("text").innerHTML = emojify(document.getElementById("input").innerHTML, emoji);
+        document.getElementById("emoji").innerHTML = jumbo(document.getElementById("input").innerHTML);
+        document.getElementById("text").addEventListener("click", function () {
+            copyToClipboard(document.getElementById("text"));
+            $('.output1').addClass('bounce');
+            setTimeout(function () {
+                $('.output1').removeClass('bounce');;
+            }, 300);
+            $('.c1').addClass('fadeoutin');
+            setTimeout(function () {
+                $('.c1').removeClass('fadeoutin');;
+            }, 300);
+        });
+        document.getElementById("emoji").addEventListener("click", function () {
+            copyToClipboard(document.getElementById("emoji"));
+            $('.output2').addClass('bounce');
+            setTimeout(function () {
+                $('.output2').removeClass('bounce');;
+            }, 300);
+            $('.c2').addClass('fadeoutin');
+            setTimeout(function () {
+                $('.c2').removeClass('fadeoutin');;
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>
