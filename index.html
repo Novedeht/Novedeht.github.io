@@ -1,7 +1,9 @@
 <html>
 
+<!-- hi -->
+
 <head>
-    <title>my gay shit</title>
+    <title>welcome to the succ cafe</title>
     <style>
         body {
             background-color: black;
@@ -9,36 +11,50 @@
 
         h1 {
             font-weight: bold;
-            font-family: "Comic Sans MS", cursive, sans-serif;
-            font-size: 100x;
+            font-family: "Comic Sans MS", Arial, sans-serif;
             color: white;
             text-shadow: 1px 1px 20px white;
             outline-width: 0;
+            font-size: 100x;
+            top: 100px;
         }
 
         a {
-            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-family: "Comic Sans MS", Arial, sans-serif;
             color: lightblue;
             margin-left: 5px;
             margin-right: 5px;
             text-shadow: 1px 1px 20px lightblue;
         }
     </style>
-    <script src="js/nasa.js"></script>
 </head>
 
 <body>
     <center>
-        <script>
-            var header = document.getElementsById("header")[0].value;
-            document.title = header;
-        </script>
-        <h1 id="header" contenteditable="true" spellcheck="false" id='header'>welcome to the succ cafe</h1>
+        <h1 class="header" onKeyPress="enterpressalert(event, this)" contenteditable="true" spellcheck="false" id='header'>welcome to the succ cafe</h1>
         <a href="./dotgame">dot game thing</a>
         <a href="./nasa">nasa image search</a>
         <a href="./hexbongadventure">hexhammers bongerific adventure</a>
         <a href="./nickname">nickname generator</a>
         <a href="./emojify">emojify</a>
+        <script>
+            setInterval(function () {
+                document.title = document.getElementById("header").innerHTML.replace(/&nbsp;/g, ' ');
+            }, 1000);
+
+            function enterpressalert(e, textarea) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if (code == 13) {
+                    if (document.getElementById("header").innerHTML == "secret") {
+                        window.location.href = "./stuff/secret%20file%20dont%20tell%20anybody.txt";
+                    }
+                    if (document.getElementById("header").innerHTML == "think") {
+                        window.location.href = "./stuff/think.png";
+                    }
+                    event.preventDefault();
+                }
+            }
+        </script>
     </center>
 </body>
 
