@@ -104,6 +104,7 @@
 
 <body>
     <center>
+        <div style="font-size:12px;position: relative; top: 643px; font-family: 'Arial', Arial, serif;"class="enter">Press enter to generate</div>
         <div class="input" id="input" onKeyPress="enterpressalert(event, this)" contenteditable="true" spellcheck="false">Type stuff here</div>
         <hr>
         <div class="output1" style="font-family: 'Arial', Arial, serif;" id="text"></div>
@@ -117,6 +118,7 @@
         function enterpressalert(e, textarea) {
             var code = (e.keyCode ? e.keyCode : e.which);
             if (code == 13) {
+                $('.enter').addClass('fadeoutin');
                 $('.output1').addClass('bounce');
                 if (document.getElementById("input").innerHTML == '') {
                     document.getElementById("text").innerHTML = emojify('Type something you', emoji);
