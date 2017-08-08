@@ -1,0 +1,140 @@
+<html>
+
+<head>
+    <title>some gay shit</title>
+    <style>
+        .player {
+            position: relative;
+        }
+        .ground1 {
+            background: black;
+            position: relative;
+            width: 200px;
+            height: 100px;
+            top: 100px;
+        }
+        .ground2 {
+            background: black;
+            position: relative;
+            width: 600px;
+            height: 100px;
+            top: 200px;
+            left: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player" id="player"></div>
+    <div class="ground1" id="ground1"></div>
+    <div class="ground2" id="ground2"></div>
+</body>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script>
+    var playing = true;
+    var down = false;
+    var touchingground = false;
+    var xspeed = 0;
+    var fallspeed = 0;
+    var maxfall = 10;
+    var fall = 0.4;
+    var maxspeed = 5;
+    var movingleft = false;
+    var movingright = false;
+    var acceleration = 0.5;
+    var playerwidth = 60;
+    var playerheight = 60;
+    var playercolor = "black"
+
+    var player = document.getElementById("player");
+
+    player.style.width = playerwidth + "px";
+    player.style.height = playerheight + "px";
+    player.style.background = playercolor;
+    player.style.top = "0px";
+    player.style.left = "0px";
+    player.style.bottom = "0px";
+
+    function collision($div1, $div2) {
+      var x1 = $div1.offset().left;
+      var y1 = $div1.offset().top;
+      var h1 = $div1.outerHeight(true);
+      var w1 = $div1.outerWidth(true);
+      var b1 = y1 + h1;
+      var r1 = x1 + w1;
+      var x2 = $div2.offset().left;
+      var y2 = $div2.offset().top;
+      var h2 = $div2.outerHeight(true);
+      var w2 = $div2.outerWidth(true);
+      var b2 = y2 + h2;
+      var r2 = x2 + w2;
+        
+      if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+      return true;
+    }
+
+    setInterval(
+        function () {
+            if (playing == true) {
+                if(collision($('#player'),$('#ground1')) || collision($('#player'),$('#ground2'))) {
+                    touchingground = true
+                    fallspeed = 0;
+                } else {
+                    touchingground = false
+                }
+                if (touchingground == false) {
+                    if(fallspeed < maxfall) {
+                        fallspeed += fall;
+                    }
+                    player.style.top = parseInt(player.style.top) + fallspeed
+                }
+                if (movingleft == true) {
+                    if (xspeed < maxspeed) {
+                        xspeed += acceleration
+                    }
+                    player.style.left = parseInt(player.style.left) - xspeed
+                }
+                if (movingright == true) {
+                    if (xspeed < maxspeed) {
+                        xspeed += acceleration
+                    }
+                    player.style.left = parseInt(player.style.left) + xspeed
+                }
+            }
+        }, 10)
+
+    document.addEventListener('keydown', function (e) {
+        if (down) return;
+        down = true;
+        e.preventDefault();
+
+
+        if (e.key == "ArrowLeft") {
+            movingleft = true
+        }
+        if (e.key == "ArrowRight") {
+            movingright = true
+        }
+        if (e.key == "ArrowUp") {
+            if(touchingground == true) {
+                console.log('dba')
+            player.style.marginTop == 100
+            }
+        }
+    }, false);
+
+    document.addEventListener('keyup', function (e) {
+        down = false;
+        e.preventDefault();
+
+        xspeed = 0;
+        if (e.key == "ArrowLeft") {
+            movingleft = false
+        }
+        if (e.key == "ArrowRight") {
+            movingright = false
+        }
+    }, false);
+</script>
+
+</html>
